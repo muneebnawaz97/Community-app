@@ -73,3 +73,5 @@ end
 gem "tailwindcss-rails", "~> 2.0"
 gem "font-awesome-sass", "~> 6.2.0"
 gem "pg", "~> 1.4"
+
+gem "devise", "~> 4.8"
