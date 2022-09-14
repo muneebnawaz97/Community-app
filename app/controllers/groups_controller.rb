@@ -17,12 +17,12 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-
+    @group.user_id = current_user.id
+    
     respond_to do |format|
       if @group.save
-        format.html { redirect_to group_url(@group), notice: "Group was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.prepend('groups', partial: 'groups/group', locals: {group: @group}) }
+        format.html { redirect_to groups_path, notice: "Group was successfully created." }
       end
     end
   end
@@ -30,9 +30,8 @@ class GroupsController < ApplicationController
   def update
     respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to group_url(@group), notice: "Group was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@group, partial: "groups/group", locals: {group: @group}) }
+        format.html { redirect_to groups_path, notice: "Group was successfully updated." }
       end
     end
   end
@@ -51,6 +50,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.fetch(:group, {})
+      params.require(:group).permit(:title)
     end
 end
