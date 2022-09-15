@@ -1,6 +1,6 @@
-ge<%= form_with(model: group, class: "contents") do |form| %>
-  <div id="defaultModal" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
-      <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+<%= form_with(model: group, class: "contents") do |form| %>
+  <div id="defaultModal" tabindex="-1" aria-hidden="true" class="flex justify-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+      <div class="relative p-4 w-full max-w-2xl h-full md:h-auto mt-24">
           <!-- Modal content -->
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <!-- Modal header -->
@@ -15,6 +15,7 @@ ge<%= form_with(model: group, class: "contents") do |form| %>
               </div>
               <!-- Modal body -->
               <div class="p-6 space-y-6">
+              <div>
                 <% if group.errors.any? %>
                   <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
                     <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
@@ -26,19 +27,20 @@ ge<%= form_with(model: group, class: "contents") do |form| %>
                     </ul>
                   </div>
                 <% end %>
-                <div class="flex">
-                  <div class="w-full ml-6">
+                <div>
+                <div class="flex my-5">
+                  <div class="w-full ml-6 basis-2/4">
                     <h3 class="text-m font-semibold text-gray-500 dark:text-white">
                       Group Name
                   </h3>
-                  <p class=" mt-2 text-sm text-justify text-gray-500 dark:text-white"> People will see this name before joing your group </p>
+                  <p class=" mt-2 text-sm text-gray-500 dark:text-white"> People will see this name before joing your group </p>
                   </div>
                   <%= form.text_field :title, autofocus: true, placeholder: "Title of your group", class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
                 </div>
               </div>
               <!-- Modal footer -->
               <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                  <%= form.button data: {action: "click->turbo-modal#submitEnd"}, class: "ml-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+                  <%= form.submit data: {action: "turbo:submit-end->turbo-modal#submitEnd"}, class: "ml-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
               </div>
           </div>
       </div>

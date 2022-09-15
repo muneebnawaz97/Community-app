@@ -78,3 +78,4 @@ gem "view_component"
 gem "devise", "~> 4.8"
 gem 'jquery-rails'
 gem 'turbolinks'
+gem "font-awesome-rails"
