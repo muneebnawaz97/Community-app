@@ -3,12 +3,28 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
+  <div class="flex flex-col justify-between items-center items-baseline">
+    <div class="ml-6">
     <h1 class="font-bold text-4xl">Groups</h1>
-    <%= link_to 'New group', new_group_path,data: { turbo_frame: 'modal' }, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    </div>
+    <div class="flex justify-between w-full">
+    <div class="ml-6 mt-6">
+      <nav class="flex flex-row">
+          <%=link_to groups_path(all: true), class: params[:all] ? "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" : "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none font-medium" do %>
+              All Groups
+          <% end %>
+          <%= link_to groups_created_path(created: true), class: params[:created] ? "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" : "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" do %>
+              Created by me
+          <% end %>
+          <%= link_to groups_member_path(member: true), class:  params[:member] ? "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" : "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" do%>
+              Where I am a member
+          <% end %>
+      </nav>
+    </div>
+    <%= link_to 'New group', new_group_path,data: { turbo_frame: 'modal' }, class: "mr-6 self-end rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    </div>
   </div>
-
   <div id="groups" class="min-w-full">
-    <%= render @groups %>
+    <%= render(GroupComponent.with_collection(@groups, user: current_user)) %>
   </div>
 </div>

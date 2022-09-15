@@ -4,7 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :groups
   has_many :group_memberships
   has_many :groups, through: :group_memberships
+
+  def member? group
+    groups.include?(group)
+  end
+    
+  def user_groups
+    groups.where(role: :admin)
+  end
+  
 end
