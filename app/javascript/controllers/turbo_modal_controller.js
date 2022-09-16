@@ -7,13 +7,19 @@ export default class extends Controller {
   }
 
   submitEnd(e) {
-    if(document.getElementById("title")) {
+    if(document.getElementById("post-edit")) {
+      if (e.detail.success) {
+        Turbo.visit(e.detail.fetchResponse.response.url)
+      }
+    }
+    if(document.getElementById("title") && e.target.getElementsByClassName("data")[0]) {
       let title = e.target.getElementsByClassName("data")[0].value
-      document.getElementById("title").innerHTML = title    
+      document.getElementById("title").innerHTML = title   
     }
     
     if(e.detail.success) {
       this.hideModal()
     }
   }
+
 }

@@ -1,5 +1,5 @@
-<%= form_with(model: [group,post], data: {controller: "emoji-picker"}) do |form| %>
-  <div style="margin-left: 25px;margin-top: 30px; width: 90%;">
+<%= form_with(model: [group,post]) do |form| %>
+  <div id="post-edit" style="margin-left: 25px;margin-top: 30px; width: 90%;" data-clubs-my-value="<%= post.id %>">
     <% if post.errors.any? %>
       <div style="color: red">
         <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -11,11 +11,11 @@
       </div>
     <% end %>
     <div class="flex" styles="margin-left: 10px;">
-      <%= form.text_field :title, class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" , style: "width: 100%;"  %>
+      <%= form.text_field :title, placeholder: "What is the title of this post?", class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" , style: "width: 100%;"  %>
     </div>
     
     <div class="flex" style="margin-top: 10px; height: 200px;">
-      <%= form.text_area :content, size: "78x600", class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"%>
+      <%= form.text_area :content, placeholder: "Write your post...", size: "78x600", class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"%>
     </div>
     <%= form.hidden_field :group_id, value: group.id %>
     <div class="flex justify-end" style="justify-content: flex-end;">

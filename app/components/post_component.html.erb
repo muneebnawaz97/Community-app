@@ -1,17 +1,30 @@
-<div class="max-w-sm w-full lg:max-w-full lg:flex mt-6 w-9/12" style="width: 55%">
+<div class="max-w-sm w-full lg:max-w-full lg:flex mt-6 w-9/12" style="width: 55%; margin-left: 130px; margin-top: 20px;">
   <div class="bg-indigo-600 rounded-b-md border border-transparent" style="height:20px">
   </div>
   <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal" style="min-height: 150px;">
     <div class="mb-8">
       <div class="font-mono text-gray-900 font-bold text-xl mb-2"><%=title%></div>
-      <p class="font-mono text-gray-700 text-base mt-2"><%=h truncate(content, length: 250) %></p>
+      <p class="font-mono text-gray-700 text-base mt-2 break-words" style="overflow-wrap: break-word;"><%=h truncate(content, length: 250) %></p>
     </div>
-    <div class="flex items-center">
-      <img class="w-10 h-10 rounded-full mr-4" src="/img/jonathan.jpg" alt="Avatar of Jonathan Reinink">
-      <div class="text-sm">
-        <p class="font-mono text-gray-900 leading-none"><%= user %></p>
-        <p class="font-mono text-gray-600">Aug 18</p>
+    <div class="flex mt-6">
+      <div class="flex items-center">
+        <% if user.avatar.attached? %>
+          <%= cl_image_tag avatar, width: 40, crop: "fill",cloud_name: "dwuggpa4l", class: "rounded-full mr-2", style: "
+          border-radius: 50%;
+          border-width: 2px;" %>
+        <% end %>
+        <div class="text-sm">
+          <p class="font-mono text-gray-900 leading-none"><%= user.name %></p>
+        </div>
       </div>
+    </div>
+      <div class="flex mt-6">
+        <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "View Post ->", groups_path, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
+        <h1 class="mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" style="margin-left:10px; margin-right: 10px;">Last activity <%= last_activity %> ago</h1>
+        <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Edit", edit_group_post_path(id: post.id,group_id: post.group.id), data: { turbo_frame: 'modal' }, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
+        <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Delete", group_post_path(id: post.id,group_id: post.group.id), method: :delete, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
+      </div>
+    </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_one_attached :avatar
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,6 +7,10 @@ class User < ApplicationRecord
   
   has_many :group_memberships
   has_many :groups, through: :group_memberships
+
+  def admin? group
+    group.admins.include?(self)
+  end
 
   def member? group
     groups.include?(group)

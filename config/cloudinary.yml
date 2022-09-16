@@ -1,0 +1,18 @@
+development:
+  cloud_name: "dwuggpa4l"
+  api_key: <%= ENV["API_KEY"] %>
+  api_secret: <%= ENV["API_KEY_SECRET"] %>
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: "dwuggpa4l"
+  api_key: <%= ENV["API_KEY"] %>
+  api_secret: <%= ENV["API_KEY_SECRET"] %>
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: "dwuggpa4l"
+  api_key: <%= ENV["API_KEY"] %>
+  api_secret: <%= ENV["API_KEY_SECRET"] %>
+  enhance_image_tag: true
+  static_file_support: false

@@ -10,7 +10,9 @@ class GroupMembershipsController < ApplicationController
 
   def destroy
     @membership = GroupMembership.find_by(user_id: params[:id], group_id: params[:group_id])
-    @membership.destroy!
+    if @membership.destroy
+      redirect_to group_path(params[:group_id])
+    end
   end
 
   private
