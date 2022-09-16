@@ -56,6 +56,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "byebug"
+  gem "dotenv-rails", require: "dotenv/rails-now"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -69,6 +70,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "dotenv-rails",require: "dotenv/rails-now"
 end
 
 gem "tailwindcss-rails", "~> 2.0"
@@ -79,5 +81,7 @@ gem "devise", "~> 4.8"
 gem 'jquery-rails'
 gem 'turbolinks'
 gem "font-awesome-rails"
+gem 'cloudinary'
+
 
 gem "hotwire-livereload", "~> 1.2", :group => :development

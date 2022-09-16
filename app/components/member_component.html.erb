@@ -1,10 +1,17 @@
 <div id="user-<%=member_id%>" data-controller="remove-member" class="flex border-r-2 border-green-200" style="margin-top:10px">
-  <p data-action="click->remove_member#lmao" class="text-2xl mt-2"><%= email %></p>
-  
-  <%=link_to group_group_membership_path(id: member_id,group_id: group_id), data: {action: "remove_member#lmao", remove_member_form_params: "user-#{member_id}"}, method: :delete, class: "ml-4 mt-2", style: "
-    margin-left: 15px;
-    margin-top: 9px;
-  " do %>
-     <i data-action="click->remove_member#lmao" class="fa-thin fa-x"></i>
+  <% if user.avatar.attached? %>
+    <%= cl_image_tag avatar, width: 40, crop: "fill",cloud_name: "dwuggpa4l", class: "rounded-full mr-2", style: "
+    border-radius: 50%;
+    border-color: peachpuff;
+    border-width: 2px;" %>
   <% end %>
+  <p data-action="click->remove_member#lmao" class="text-2xl mt-2" style="min-width: 140px"><%= name %></p>
+  <%if !user.admin? group%>
+    <%=link_to group_group_membership_path(id: member_id,group_id: group_id), data: {action: "remove_member#lmao", remove_member_form_params: "user-#{member_id}"}, method: :delete, class: "ml-4 mt-2", style: "
+      margin-left: 15px;
+      margin-top: 9px;
+    " do %>
+      <i data-action="click->remove_member#lmao" class="fa-thin fa-x"></i>
+    <% end %>
+  <%end%>
 </div>

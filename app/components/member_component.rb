@@ -8,8 +8,15 @@ class MemberComponent < ViewComponent::Base
     @group = group
   end
 
-  def email
-    @member.email
+  def user
+    @member
+  end
+
+  def group
+    @group
+  end
+  def name
+    @member.name
   end
   
   def member_id
@@ -18,5 +25,9 @@ class MemberComponent < ViewComponent::Base
 
   def group_id
     @group.id
+  end
+
+  def avatar
+    @member.avatar.key
   end
 end
