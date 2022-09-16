@@ -8,9 +8,14 @@ class GroupMembershipsController < ApplicationController
    end
   end
 
+  def destroy
+    @membership = GroupMembership.find_by(user_id: params[:id], group_id: params[:group_id])
+    @membership.destroy!
+  end
+
   private
 
   def parameters
-    params.permit(:group_id)
+    params.permit(:id, :group_id)
   end
 end

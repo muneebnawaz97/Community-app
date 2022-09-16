@@ -1,15 +1,33 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
-
-    <%= render @group %>
-
-    <%= link_to 'Edit this group', edit_group_path(@group), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this group', group_path(@group), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<div class="flex flex-col">
+  <div class="flex">
+    <div class="flex flex-col basis-3/5 ml-24" style="margin-left: 100px;">
+      <div class="flex">
+        <div class="ml-6 ">
+          <h1 id="title" class="font-bold text-3xl"><%= @group.title %></h1>
+        </div>
+        <div class="mt-2 ml-2">
+          <%= link_to edit_group_path(@group.id),data: { turbo_frame: 'modal' } do%>
+            <i class="fa-solid fa-gear fa-lg"></i>
+          <%end%>
+        </div>
+      </div>
+      <div>
+        <%= render(PostFormComponent.new(group: @group, post: @group.posts.build))%>
+      </div>
     </div>
-    <%= link_to 'Back to groups', groups_path(all: true), class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="flex flex-col basis-2/5 h-full align-center" style="align-items: center;">
+      <div class="flex justify-center py-4 px-6 border-b-2 border-green-400 w-2" style="width: fit-content;border-color: rgb(220 252 231);">
+        <h1 class="text-3xl">Members</h1>
+      </div>
+      <%= render(MemberComponent.with_collection(@group.users, group: @group))%>
+    </div>
+  </div>
+  <div class="flex flex-col ml-24 mt-6" style="margin-left: 130px; margin-top: 20px;">
+    <%unless @group.posts.empty?%>
+    <h1 class="font-bold text-3xl">All Posts</h1>
+    <%= render(PostComponent.with_collection(@group.ordered_posts))%>
+    <%else%>
+      <%= render(EmptyBoxComponent.new(title: "No Posts"))%>
+    <%end%>
   </div>
 </div>
