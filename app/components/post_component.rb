@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class PostComponent < ViewComponent::Base
-  def initialize(post:)
+  def initialize(post:, show:)
     @post = post
+    @show = show || false
   end
 
   def post
