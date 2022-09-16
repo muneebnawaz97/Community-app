@@ -1,6 +1,6 @@
 class Group < ApplicationRecord
-  has_many :posts
-  has_many :group_memberships
+  has_many :posts, dependent: :destroy
+  has_many :group_memberships, dependent: :destroy
   has_many :users, through: :group_memberships
   belongs_to :user
 
@@ -12,6 +12,10 @@ class Group < ApplicationRecord
 
   def total_posts
     posts.count
+  end
+
+  def ordered_posts
+    posts.order(created_at: :desc)
   end
 
   def last_activity
