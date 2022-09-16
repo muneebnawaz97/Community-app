@@ -16,13 +16,12 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(group_params)
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to comment_url(@comment), notice: "Group was successfully created." }
-      else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully created." }
       end
     end
   end
@@ -51,6 +50,7 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.fetch(:group, {})
+      params[:comment][:post_id] = params[:post_id]
+      params.require(:comment).permit(:post_id,:content)
     end
 end

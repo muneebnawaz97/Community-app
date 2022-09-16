@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_054442) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_16_210755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,7 +48,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_054442) do
     t.datetime "updated_at", null: false
     t.integer "parent_id"
     t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "group_memberships", force: :cascade do |t|
@@ -98,6 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_054442) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "comments", column: "parent_id"
   add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "group_memberships", "groups"
   add_foreign_key "group_memberships", "users"
   add_foreign_key "groups", "users"
