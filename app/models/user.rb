@@ -9,6 +9,14 @@ class User < ApplicationRecord
   has_many :groups, through: :group_memberships
   has_many :comments
 
+  def post_owner post
+    post.user.id == self.id
+  end
+
+  def comment_owner comment
+    comment.user.id == self.id
+  end
+  
   def admin? group
     group.admins.include?(self)
   end

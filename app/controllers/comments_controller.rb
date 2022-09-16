@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: "Group was successfully destroyed." }
+      format.html { redirect_to group_post_path(id: params[:post_id], group_id: params[:group_id]), notice: "Comment was successfully destroyed." }
     end
   end
 

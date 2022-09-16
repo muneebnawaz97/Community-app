@@ -25,7 +25,7 @@
   <div class="flex flex-col mt-6">
     <%if !@group.posts.empty?%>
       <h1 class="font-bold text-3xl" style="margin-left: 130px; margin-top: 20px;">All Posts</h1>
-      <%= render(PostComponent.with_collection(@group.ordered_posts, show: false))%>
+      <%= render(PostComponent.with_collection(@group.ordered_posts, show: false, user: current_user))%>
     <%else%>
       <div style="margin-left: 130px; margin-top: 20px;">
         <%= render(EmptyBoxComponent.new(title: "No Posts"))%>

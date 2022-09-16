@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
 class PostComponent < ViewComponent::Base
-  def initialize(post:, show:)
+  def initialize(post:, show:, user:)
     @post = post
-    @show = show || false
+    @show = show
+    @current_user = user
   end
-
+  
   def post
     @post
   end
 
+  def current_user
+    @current_user
+  end
   def user
     @post.user
   end
@@ -20,10 +24,6 @@ class PostComponent < ViewComponent::Base
 
   def content
     @post.content
-  end
-
-  def user
-    @post.user
   end
   
   def avatar
