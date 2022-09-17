@@ -4,21 +4,21 @@ class PostsController < ApplicationController
     @post.user_id = current_user.id
 
     authorize @post
-    
+
     if @post.save
       redirect_to group_path(params[:group_id])
     end
   end
-  
+
   def edit
     @post = Post.find(params[:id])
   end
 
   def update
     @post = Post.find(params[:id])
-    
+
     authorize @post
-    
+
     if @post.update(post_params)
       redirect_to group_path(params[:group_id])
     else
@@ -27,21 +27,20 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(user: [:avatar_attachment], comments: [:user, :replies]).find(params[:id])
     @user = current_user
 
     authorize @post
-    
   end
 
   def destroy
     @post = Post.find(params[:id])
-    
+
     if @post.destroy
       redirect_to group_path(params[:group_id])
     end
   end
-  
+
   private
 
   def post_params

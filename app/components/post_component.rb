@@ -1,22 +1,16 @@
 # frozen_string_literal: true
 
 class PostComponent < ViewComponent::Base
-  def initialize(post:, show:, user:)
+  def initialize post:, show:, user:
     @post = post
     @show = show
     @current_user = user
   end
-  
-  def post
-    @post
-  end
+
+  attr_reader :post, :current_user
 
   def group
     post.group
-  end
-  
-  def current_user
-    @current_user
   end
 
   def post_owner
@@ -26,15 +20,15 @@ class PostComponent < ViewComponent::Base
   def admin
     current_user.admin group
   end
-  
+
   def can_edit
-     admin || post_owner
+    admin || post_owner
   end
-  
+
   def user
     @post.user
   end
-  
+
   def title
     @post.title
   end
@@ -42,17 +36,16 @@ class PostComponent < ViewComponent::Base
   def content
     @post.content
   end
-  
+
   def avatar
     user.avatar.key
   end
 
   def last_activity
-    if (@post.comments&.last&.created_at)
+    if @post.comments&.last&.created_at
       distance_of_time_in_words(@post.comments.last.created_at, Time.now)
     else
       distance_of_time_in_words(@post.created_at, Time.now)
     end
   end
-
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentComponent < ViewComponent::Base
-  def initialize(comment:, user:)
+  def initialize comment:, user:
     @comment = comment
     @current_user = user
   end
@@ -9,10 +9,8 @@ class CommentComponent < ViewComponent::Base
   def parent
     comment.parent_id
   end
-  
-  def comment
-    @comment
-  end
+
+  attr_reader :comment, :current_user
 
   def comment_owner
     current_user.comment_owner comment
@@ -21,9 +19,9 @@ class CommentComponent < ViewComponent::Base
   def admin
     current_user.admin group
   end
-  
+
   def can_edit
-     admin || comment_owner
+    admin || comment_owner
   end
 
   def post
@@ -32,10 +30,6 @@ class CommentComponent < ViewComponent::Base
 
   def group
     post.group
-  end
-
-  def current_user
-    @current_user
   end
 
   def user
@@ -51,6 +45,6 @@ class CommentComponent < ViewComponent::Base
   end
 
   def last_activity
-      distance_of_time_in_words(@comment.created_at, Time.now)
+    distance_of_time_in_words(@comment.created_at, Time.now)
   end
 end

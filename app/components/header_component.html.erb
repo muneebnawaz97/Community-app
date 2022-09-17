@@ -1,16 +1,34 @@
-<div class="self-end m-5" style="
-    align-self: end;">
-  <div class="flex flex-row items-center justify-end md:flex md:flex-1 lg:w-0">
-    <% if @current_user%>
-      <%= link_to groups_path(all: true), class:"mr-2 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900", style: "
-    margin-right: 15px;" do %>
-        Groups
-      <%end%>
-      <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"ml-2 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700" %>
-    <% else %>
-      <%= link_to "Sign in", new_user_session_path, class:"mr-5 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900", style: "
-    margin-right: 15px;"%>
-      <%= link_to "Sign up", new_user_registration_path, class:"ml-20 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700" %>
-    <% end %>
+<div class="self-end m-5 flex justify-between self-auto" style="
+    align-self: end;
+    align-self: auto;
+    ">
+    <div class="flex">
+      <% if user&.avatar&.attached? %>
+      <%= cl_image_tag avatar, width: 40, height: 40, crop: "fill",cloud_name: "dwuggpa4l", class: "rounded-full mr-2", style: "
+      border-radius: 50%;
+      border-color: peachpuff;
+      border-width: 2px;" %>
+    <%else%>
+      <%= image_tag "default-user.png", width: 40, height: 40, crop: "fill",cloud_name: "dwuggpa4l", class: "rounded-full mr-2", style: "
+      border-radius: 50%;
+      border-color: peachpuff;
+      border-width: 2px;" %>
+    <%end%>
+    <p data-action="click->remove_member#lmao" class="text-2xl mt-2" style="min-width: 110px"><%=truncate(name, length:13) %></p>
+    </div>
+  <div>
+    <div class="flex flex-row items-center justify-end md:flex md:flex-1 lg:w-0">
+      <% if @current_user%>
+        <%= link_to groups_path(all: true), class:"mr-2 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900", style: "
+      margin-right: 15px;" do %>
+          Groups
+        <%end%>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"ml-2 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700" %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class:"mr-5 whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900", style: "
+      margin-right: 15px;"%>
+        <%= link_to "Sign up", new_user_registration_path, class:"ml-20 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700" %>
+      <% end %>
+    </div>
   </div>
 </div>

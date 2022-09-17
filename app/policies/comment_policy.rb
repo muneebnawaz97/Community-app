@@ -1,9 +1,8 @@
 class CommentPolicy < ApplicationPolicy
-  
   def destroy?
     admin? || comment_owner
   end
-  
+
   def update?
     admin? || comment_owner
   end

@@ -3,7 +3,7 @@ class Group < ApplicationRecord
   has_many :group_memberships, dependent: :destroy
   has_many :users, through: :group_memberships
   has_many :admins,
-    -> { where('group_memberships.role': :admin) },
+    -> { where("group_memberships.role": :admin) },
     through: :group_memberships,
     source: :user
   belongs_to :user
@@ -24,10 +24,10 @@ class Group < ApplicationRecord
   end
 
   def last_activity
-    if (posts&.last&.created_at)
-      (Time.current  - posts.last.created_at).to_i
-   else
-    (Time.current  - created_at).to_i
-   end
+    if posts&.last&.created_at
+      (Time.current - posts.last.created_at).to_i
+    else
+      (Time.current - created_at).to_i
+    end
   end
 end

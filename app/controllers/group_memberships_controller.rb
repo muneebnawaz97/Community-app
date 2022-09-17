@@ -1,20 +1,20 @@
 class GroupMembershipsController < ApplicationController
   def create
-   @membership = GroupMembership.new(parameters)
-   @membership.user_id = current_user.id
+    @membership = GroupMembership.new(parameters)
+    @membership.user_id = current_user.id
 
-   authorize @membership
+    authorize @membership
 
-   if @membership.save
-    redirect_to groups_path(all: true)
-   end
+    if @membership.save
+      redirect_to groups_path(all: true)
+    end
   end
 
   def destroy
     @membership = GroupMembership.find_by(user_id: params[:id], group_id: params[:group_id])
 
     authorize @membership
-    
+
     if @membership.destroy
       redirect_to group_path(params[:group_id])
     end
@@ -23,6 +23,6 @@ class GroupMembershipsController < ApplicationController
   private
 
   def parameters
-    params.permit(:id,:group_id,:role)
+    params.permit(:id, :group_id, :role)
   end
 end

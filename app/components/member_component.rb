@@ -3,7 +3,7 @@
 class MemberComponent < ViewComponent::Base
   with_collection_parameter :member
 
-  def initialize(member:, group:, user:)
+  def initialize member:, group:, user:
     @member = member
     @group = group
     @user = user
@@ -29,13 +29,12 @@ class MemberComponent < ViewComponent::Base
     @member
   end
 
-  def group
-    @group
-  end
+  attr_reader :group
+
   def name
     @member.name
   end
-  
+
   def member_id
     @member.id
   end

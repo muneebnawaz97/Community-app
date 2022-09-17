@@ -82,6 +82,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem "font-awesome-rails"
 gem 'cloudinary'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'goldiloader'
 
 
 gem "hotwire-livereload", "~> 1.2", :group => :development

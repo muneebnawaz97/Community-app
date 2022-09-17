@@ -4,11 +4,11 @@
       <div class="mb-8">
         <div class="flex items-center">
           <% if user.avatar.attached? %>
-            <%= cl_image_tag avatar, width: 40, crop: "fill",cloud_name: "dwuggpa4l", class: "rounded-full mr-2", style: "
+            <%= cl_image_tag avatar, width: 40, height: 40, crop: "fill",cloud_name: "dwuggpa4l", class: "rounded-full mr-2", style: "
             border-radius: 50%;
             border-width: 2px;" %>
           <%else%>
-            <%= image_tag "default-user.png", width: 40, crop: "fill",cloud_name: "dwuggpa4l", class: "rounded-full mr-2", style: "
+            <%= image_tag "default-user.png", width: 40, height: 40, crop: "fill",cloud_name: "dwuggpa4l", class: "rounded-full mr-2", style: "
             border-radius: 50%;
             border-color: peachpuff;
             border-width: 2px;" %>

@@ -1,5 +1,4 @@
 class GroupPolicy < ApplicationPolicy
-
   def update?
     admin?
   end
@@ -11,7 +10,7 @@ class GroupPolicy < ApplicationPolicy
   def show?
     group_member?
   end
-  
+
   private
 
   def admin?

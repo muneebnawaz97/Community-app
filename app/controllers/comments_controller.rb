@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   def create
     @comment = Comment.new(comment_params)
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
   def destroy
     authorize @comment
-    
+
     @comment.destroy
 
     respond_to do |format|
@@ -37,19 +37,20 @@ class CommentsController < ApplicationController
   end
 
   private
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
 
-    def comment_params
-      set_params
-      params.require(:comment).permit(:post_id,:content,:parent_id)
-    end
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
 
-    def set_params
-      params[:comment][:post_id] = params[:post_id]
-      if params[:comment_id]
+  def comment_params
+    set_params
+    params.require(:comment).permit(:post_id, :content, :parent_id)
+  end
+
+  def set_params
+    params[:comment][:post_id] = params[:post_id]
+    if params[:comment_id]
       params[:comment][:parent_id] = params[:comment_id]
-      end
     end
+  end
 end

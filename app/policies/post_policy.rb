@@ -1,13 +1,12 @@
 class PostPolicy < ApplicationPolicy
-  
   def create?
     member?
   end
-  
+
   def destroy?
     admin? || post_owner
   end
-  
+
   def update?
     admin? || post_owner
   end

@@ -1,5 +1,4 @@
 class GroupMembershipPolicy < ApplicationPolicy
-
   def destroy?
     user
   end
