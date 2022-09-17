@@ -1,14 +1,17 @@
 # frozen_string_literal: true
 
-class CommentFormComponent < ViewComponent::Base
-  def initialize(group:, post:, comment:)
-    @group = group
+class ReplyCommentFormComponent < ViewComponent::Base
+  def initialize(post:, comment:)
     @post = post
     @comment = comment
   end
   
   def parent
-    comment.parent_id
+    new_comment.parent_id
+  end
+
+  def new_comment
+    comment.replies.build
   end
 
   def edit
@@ -16,7 +19,7 @@ class CommentFormComponent < ViewComponent::Base
   end
 
   def group
-    @group
+    post.group
   end
 
   def post

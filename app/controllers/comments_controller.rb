@@ -49,6 +49,7 @@ class CommentsController < ApplicationController
 
     def comment_params
       params[:comment][:post_id] = params[:post_id]
-      params.require(:comment).permit(:post_id,:content)
+      params[:comment][:parent_id] = params[:comment_id]
+      params.require(:comment).permit(:post_id,:content,:parent_id)
     end
 end

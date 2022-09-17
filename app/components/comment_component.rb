@@ -6,6 +6,9 @@ class CommentComponent < ViewComponent::Base
     @current_user = user
   end
 
+  def parent
+    comment.parent_id
+  end
   def comment
     @comment
   end

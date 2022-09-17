@@ -5,7 +5,7 @@
   </div>
   <%= render(PostComponent.new(post: @post, show: true, user: current_user))%>
   <h1 class="font-bold text-3xl" style="margin-left: 130px; margin-top: 20px;">Comments</h1>
-  <%=render(CommentComponent.with_collection(@post.comments,user: @current_user))%>
+  <%=render(CommentComponent.with_collection(@post.comments.not_replies,user: @current_user))%>
   <div style= "
     margin-right: 5px; width: 55%; margin-left: 130px; margin-top: 20px;">
     <%= render(CommentFormComponent.new(group: @post.group, post: @post, comment: @post.comments.build))%>
