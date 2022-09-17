@@ -12,11 +12,11 @@
     <% end %> 
     <% form.hidden_field  :post_id, value: post.id %>
     <div class="flex" style="margin-top: 10px; height: 200px;">
-      <%= form.text_area :content, placeholder: "Write your comment...", size: "78x600", class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"%>
+      <%= form.text_area :content,data: { edit_comment_target: :content }, placeholder: "Write your comment...", size: "78x600", class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"%>
     </div>
     <div class="flex justify-end" style="justify-content: flex-end;">
       <div class="inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700" style="margin-top:30px;">
-        <%= form.submit %>
+        <%= form.submit data: {action: "click->edit-comment#submitEnd"}%>
       </div>
   </div>
   </div>

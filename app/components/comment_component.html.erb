@@ -1,4 +1,4 @@
-<div class="max-w-sm w-full lg:max-w-full lg:flex mt-6 w-9/12" style="width: 55%; margin-left: 130px; margin-top: 20px;">
+<div class="max-w-sm w-full lg:max-w-full lg:flex mt-6 w-9/12" style="width: 55%; margin-left: 130px; margin-top: 20px;" data-controller="edit-comment" data-edit-comment-my-value="<%= comment.id %>">
   <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal" style="min-height: 150px;">
     <div class="mb-8">
       <div class="flex items-center">
@@ -16,21 +16,26 @@
           <p class="font-mono text-gray-900 leading-none"><%= user.name %></p>
         </div>
       </div>
-      <p class="font-mono text-gray-700 text-base mt-6 ml-2 break-words" style="overflow-wrap: break-word;"><%= content %></p>
-    </div>
-    <div class="flex mt-2">
-      <div>
-        <div class="flex mt-2">
-          <% unless comment.parent%>
-            <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Reply", groups_path, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
-          <%end%>
-          <h1 class="mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" style="margin-left:10px; margin-right: 10px;"> <%= last_activity %> ago</h1>
-          <% if current_user.comment_owner comment%>
-            <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Edit", groups_path, data: { turbo_frame: 'modal' }, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
-            <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Delete", group_post_comment_path(id: comment, group_id: group, post_id: post), method: :delete, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
-          <%end%>
-       </div>
       </div>
+      <div id="comment-<%=comment.id%>">
+        <p id="content-<%= comment.id%>" class="font-mono text-gray-700 text-base mt-6 ml-2 break-words" style="overflow-wrap: break-word;"><%= content %></p>
+        <div class="flex mt-2">
+          <div>
+            <div class="flex mt-2">
+              <% unless comment.parent%>
+                <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Reply", groups_path, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
+              <%end%>
+              <h1 class="mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" style="margin-left:10px; margin-right: 10px;"> <%= last_activity %> ago</h1>
+              <% if current_user.comment_owner comment%>
+                <h1 class="mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" style="margin-left:10px; margin-right: 10px;" data-action="click->edit-comment#edit">Edit </h1>
+                <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Delete", group_post_comment_path(id: comment, group_id: group, post_id: post), method: :delete, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
+              <%end%>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div id="form-<%= comment.id%>" style="display:none">
+      <%= render(CommentFormComponent.new(group: group, post: post, comment: comment))%>
     </div>
   </div>
 </div>

@@ -29,9 +29,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to comment_url(@comment), notice: "Group was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully created." }
       end
     end
   end

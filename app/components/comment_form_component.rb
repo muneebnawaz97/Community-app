@@ -5,6 +5,11 @@ class CommentFormComponent < ViewComponent::Base
     @group = group
     @post = post
     @comment = comment
+    @edit = edit
+  end
+  
+  def edit
+    @edit
   end
 
   def group
