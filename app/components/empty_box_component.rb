@@ -2,7 +2,6 @@
 
 class EmptyBoxComponent < ViewComponent::Base
   def initialize(title:)
-    byebug
     @title = title
   end
 

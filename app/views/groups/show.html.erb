@@ -1,4 +1,4 @@
-<div class="flex flex-col">
+<div class="flex flex-col margin-bottom: 50px">
   <div class="flex">
     <div class="flex flex-col basis-3/5 ml-24" style="margin-left: 100px;">
       <div class="flex">
@@ -23,12 +23,12 @@
     </div>
   </div>
   <div class="flex flex-col mt-6">
-    <%if !@group.posts.empty?%>
-      <h1 class="font-bold text-3xl" style="margin-left: 130px; margin-top: 20px;">All Posts</h1>
-      <%= render(PostComponent.with_collection(@group.ordered_posts))%>
+    <h1 class="font-bold text-3xl" style="margin-left: 130px; margin-top: 20px;">All Posts</h1>
+    <%unless @group.posts.empty?%>
+      <%= render(PostComponent.with_collection(@group.ordered_posts, show: false, user: current_user))%>
     <%else%>
       <div style="margin-left: 130px; margin-top: 20px;">
-        <%= render(EmptyBoxComponent.new(title: "No Posts"))%>
+        <%= render(EmptyBoxComponent.new(title: "No Posts to show"))%>
       </div>
     <%end%>
   </div>

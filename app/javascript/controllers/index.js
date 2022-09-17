@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
+import EditCommentController from "./edit_comment_controller"
+application.register("edit-comment", EditCommentController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import RemoveMemberController from "./remove_member_controller"
-application.register("remove-member", RemoveMemberController)
+import HideAlertController from "./hide_alert_controller"
+application.register("hide-alert", HideAlertController)
 
 import TurboModalController from "./turbo_modal_controller"
 application.register("turbo-modal", TurboModalController)

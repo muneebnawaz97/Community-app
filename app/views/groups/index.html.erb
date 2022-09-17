@@ -1,8 +1,4 @@
 <div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
   <div class="flex flex-col justify-between items-center items-baseline">
     <div class="ml-6">
     <h1 class="font-bold text-4xl">Groups</h1>
@@ -21,10 +17,15 @@
           <% end %>
       </nav>
     </div>
-    <%= link_to 'New group', new_group_path,data: { turbo_frame: 'modal' }, class: "mr-6 self-end rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to '+ Create a new group', new_group_path,data: { turbo_frame: 'modal' }, class: "mr-6 self-end rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     </div>
   </div>
-    <div id="groups" class="min-w-full">
-      <%= render(GroupComponent.with_collection(@groups, user: current_user)) %>
+    <div id="groups" class="min-w-full" style="margin-bottom: 50px">
+      <%if @groups.present?%>
+        <%= render(GroupComponent.with_collection(@groups, user: current_user)) %>
+      <%else%>
+        <%= render(EmptyBoxComponent.new(title: "No groups to show"))%>
+      <%end%>
     </div>
+
 </div>

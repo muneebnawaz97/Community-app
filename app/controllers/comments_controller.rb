@@ -16,13 +16,14 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(group_params)
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to comment_url(@comment), notice: "Group was successfully created." }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully created." }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), alert: "Failed to create comment." }
       end
     end
   end
@@ -30,9 +31,9 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to comment_url(@comment), notice: "Group was successfully updated." }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully updated." }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), alert: "Comment was not updated." }
       end
     end
   end
@@ -41,7 +42,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: "Group was successfully destroyed." }
+      format.html { redirect_to group_post_path(id: params[:post_id], group_id: params[:group_id]), notice: "Comment was successfully destroyed." }
     end
   end
 
@@ -51,6 +52,14 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.fetch(:group, {})
+      set_params
+      params.require(:comment).permit(:post_id,:content,:parent_id)
+    end
+
+    def set_params
+      params[:comment][:post_id] = params[:post_id]
+      if params[:comment_id]
+      params[:comment][:parent_id] = params[:comment_id]
+      end
     end
 end

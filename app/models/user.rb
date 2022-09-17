@@ -7,7 +7,19 @@ class User < ApplicationRecord
   
   has_many :group_memberships
   has_many :groups, through: :group_memberships
+  has_many :comments
 
+  validates :name, presence: true, allow_blank: false
+  validates :email, presence: true, allow_blank: false
+
+  def post_owner post
+    post.user.id == self.id
+  end
+
+  def comment_owner comment
+    comment.user.id == self.id
+  end
+  
   def admin? group
     group.admins.include?(self)
   end

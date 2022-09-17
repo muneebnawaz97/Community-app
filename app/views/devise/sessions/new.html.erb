@@ -1,11 +1,11 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name,data: { turbo: false }, url: session_path(resource_name)) do |f| %>
   <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-28">
     <div class="w-full max-w-md space-y-8">
         <div class="-space-y-px rounded-md shadow-sm">
           <div>
             <%= f.email_field :email, autofocus: true, placeholder: "email", class: "relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
           </div>
-          <div>
+          <div class="mt-5" style="margin-top: 20px">
             <%= f.password_field :password, placeholder: "current-password", class:"relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" %>
           </div>
         </div>
@@ -15,11 +15,6 @@
             <% if devise_mapping.rememberable? %>
                 <%= f.check_box :remember_me, class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" %>
                 <%= f.label :remember_me, class: "ml-2 block text-sm text-gray-900" %>
-          <% end %>
-          </div>
-          <div class="text-sm ml-2">
-          <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <%= link_to "Forgot your password?", new_password_path(resource_name), class:"font-medium text-indigo-600 hover:text-indigo-500" %><br />
           <% end %>
           </div>
         </div>
