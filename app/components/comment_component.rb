@@ -9,8 +9,21 @@ class CommentComponent < ViewComponent::Base
   def parent
     comment.parent_id
   end
+  
   def comment
     @comment
+  end
+
+  def comment_owner
+    current_user.comment_owner comment
+  end
+
+  def admin
+    current_user.admin group
+  end
+  
+  def can_edit
+     admin || comment_owner
   end
 
   def post

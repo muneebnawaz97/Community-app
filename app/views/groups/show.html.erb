@@ -5,11 +5,13 @@
         <div class="ml-6 ">
           <h1 id="title" class="font-bold text-3xl"><%= @group.title %></h1>
         </div>
-        <div class="mt-2 ml-2">
-          <%= link_to edit_group_path(@group.id),data: { turbo_frame: 'modal' } do%>
-            <i class="fa-solid fa-gear fa-lg"></i>
-          <%end%>
-        </div>
+        <% if current_user.admin @group%>
+          <div class="mt-2 ml-2">
+            <%= link_to edit_group_path(@group.id),data: { turbo_frame: 'modal' } do%>
+              <i class="fa-solid fa-gear fa-lg"></i>
+            <%end%>
+          </div>
+        <%end%>
       </div>
       <div>
         <%= render(PostFormComponent.new(group: @group, post: @group.posts.build))%>
@@ -19,7 +21,7 @@
       <div class="flex justify-center py-4 px-6 border-b-2 border-green-400 w-2" style="width: fit-content;border-color: rgb(220 252 231);">
         <h1 class="text-3xl">Members</h1>
       </div>
-      <%= render(MemberComponent.with_collection(@group.users, group: @group))%>
+      <%= render(MemberComponent.with_collection(@group.users, group: @group, user: current_user))%>
     </div>
   </div>
   <div class="flex flex-col mt-6">

@@ -27,7 +27,7 @@
         <div class="flex mt-6">
           <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "View Post ->", group_post_path(id: post.id,group_id: post.group.id), class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
           <h1 class="mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" style="margin-left:10px; margin-right: 10px;">Last activity <%= last_activity %> ago</h1>
-          <%if current_user.post_owner post%>
+          <%if can_edit %>
             <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Edit", edit_group_post_path(id: post.id,group_id: post.group.id), data: { turbo_frame: 'modal' }, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
             <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Delete", group_post_path(id: post.id,group_id: post.group.id), method: :delete, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
           <%end%>

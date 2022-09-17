@@ -19,6 +19,6 @@ class GroupMembershipsController < ApplicationController
   private
 
   def parameters
-    params.permit(:id, :group_id)
+    params.permit(:id,:group_id,:role)
   end
 end
