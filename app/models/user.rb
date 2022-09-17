@@ -20,7 +20,7 @@ class User < ApplicationRecord
     comment.user.id == self.id
   end
   
-  def admin? group
+  def admin group
     group.admins.include?(self)
   end
 

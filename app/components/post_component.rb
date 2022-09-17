@@ -11,9 +11,26 @@ class PostComponent < ViewComponent::Base
     @post
   end
 
+  def group
+    post.group
+  end
+  
   def current_user
     @current_user
   end
+
+  def post_owner
+    current_user.post_owner post
+  end
+
+  def admin
+    current_user.admin group
+  end
+  
+  def can_edit
+     admin || post_owner
+  end
+  
   def user
     @post.user
   end

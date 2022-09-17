@@ -3,9 +3,14 @@
 class MemberComponent < ViewComponent::Base
   with_collection_parameter :member
 
-  def initialize(member:, group:)
+  def initialize(member:, group:, user:)
     @member = member
     @group = group
+    @user = user
+  end
+
+  def current_user
+    @user
   end
 
   def user

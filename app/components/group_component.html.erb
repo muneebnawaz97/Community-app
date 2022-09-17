@@ -37,7 +37,7 @@
         </div>
     <%else%>
         <div class='flex items-center justify-center mr-10 basis-2/5'>
-            <%= link_to group_group_memberships_path(@group.id), method: :post,
+            <%= link_to group_group_memberships_path(@group.id, role: :member), method: :post,
                 class:'flex break-inside bg-black rounded-3xl px-8 py-4 mb-4 w-28 dark:bg-slate-800 dark:text-white mx-16', style: "
     background-color: black;
 " do %>
