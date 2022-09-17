@@ -6,6 +6,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    authorize @group
   end
 
   def new
@@ -18,6 +19,8 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.user_id = current_user.id
+
+    authorize @group
     
     respond_to do |format|
       if @group.save
@@ -31,6 +34,9 @@ class GroupsController < ApplicationController
   end
 
   def update
+    
+    authorize @group
+
     respond_to do |format|
       if @group.update(group_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@group, partial: "groups/group", locals: {group: @group}) }
@@ -40,12 +46,15 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+    
+    authorize @group
+    
     @group.destroy
   end
 
   def member
     @groups = current_user.groups
-    
+
     respond_to do |format|
       format.html { render template: "groups/index"}
     end

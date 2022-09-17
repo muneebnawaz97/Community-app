@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+
+    authorize @post
     
     if @post.save
       redirect_to group_path(params[:group_id])
@@ -15,6 +17,8 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     
+    authorize @post
+    
     if @post.update(post_params)
       redirect_to group_path(params[:group_id])
     else
@@ -25,6 +29,9 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = current_user
+
+    authorize @post
+    
   end
 
   def destroy

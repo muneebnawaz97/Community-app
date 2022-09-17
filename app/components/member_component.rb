@@ -13,6 +13,18 @@ class MemberComponent < ViewComponent::Base
     @user
   end
 
+  def can_remove
+    admin && record_not_current_user
+  end
+
+  def admin
+    current_user.admin group
+  end
+
+  def record_not_current_user
+    current_user.id != member_id
+  end
+
   def user
     @member
   end

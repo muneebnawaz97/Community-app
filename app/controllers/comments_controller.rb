@@ -1,20 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[ show edit update destroy ]
 
-  def index
-    @groups = Comment.all
-  end
-
-  def show
-  end
-
-  def new
-    @group = Comment.new
-  end
-
-  def edit
-  end
-
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
@@ -29,6 +15,8 @@ class CommentsController < ApplicationController
   end
 
   def update
+    authorize @comment
+
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully updated." }
@@ -39,6 +27,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    authorize @comment
+    
     @comment.destroy
 
     respond_to do |format|

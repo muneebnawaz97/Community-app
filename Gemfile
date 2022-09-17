@@ -85,3 +85,5 @@ gem 'cloudinary'
 
 
 gem "hotwire-livereload", "~> 1.2", :group => :development
+
+gem "pundit", "~> 2.2"

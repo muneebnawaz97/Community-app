@@ -3,6 +3,8 @@ class GroupMembershipsController < ApplicationController
    @membership = GroupMembership.new(parameters)
    @membership.user_id = current_user.id
 
+   authorize @membership
+
    if @membership.save
     redirect_to groups_path(all: true)
    end
@@ -10,6 +12,8 @@ class GroupMembershipsController < ApplicationController
 
   def destroy
     @membership = GroupMembership.find_by(user_id: params[:id], group_id: params[:group_id])
+
+    authorize @membership
     
     if @membership.destroy
       redirect_to group_path(params[:group_id])
