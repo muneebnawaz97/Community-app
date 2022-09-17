@@ -8,7 +8,8 @@ class Group < ApplicationRecord
     source: :user
   belongs_to :user
 
-  validates :title, presence: true
+  validates :title, presence: true, allow_blank: false
+  validates :user_id, presence: true
 
   def total_members
     users.count

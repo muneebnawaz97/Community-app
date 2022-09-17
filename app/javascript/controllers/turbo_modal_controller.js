@@ -19,6 +19,7 @@ export default class extends Controller {
     
     if(e.detail.success) {
       this.hideModal()
+      document.getElementById("empty-box").style.display= "none"
     }
   }
 

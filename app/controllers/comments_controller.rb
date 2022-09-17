@@ -22,6 +22,8 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully created." }
+      else
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), alert: "Failed to create comment." }
       end
     end
   end
@@ -29,7 +31,9 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully created." }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully updated." }
+      else
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), alert: "Comment was not updated." }
       end
     end
   end
@@ -48,8 +52,14 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params[:comment][:post_id] = params[:post_id]
-      params[:comment][:parent_id] = params[:comment_id]
+      set_params
       params.require(:comment).permit(:post_id,:content,:parent_id)
+    end
+
+    def set_params
+      params[:comment][:post_id] = params[:post_id]
+      if params[:comment_id]
+      params[:comment][:parent_id] = params[:comment_id]
+      end
     end
 end
