@@ -16,14 +16,7 @@ class CommentsController < ApplicationController
 
   def update
     authorize @comment
-
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully updated." }
-      else
-        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), alert: "Comment was not updated." }
-      end
-    end
+    @comment.update(comment_params)
   end
 
   def destroy
