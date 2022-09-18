@@ -57,6 +57,9 @@ group :development do
   gem "web-console"
   gem "byebug"
   gem "dotenv-rails", require: "dotenv/rails-now"
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -71,12 +74,13 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem "dotenv-rails",require: "dotenv/rails-now"
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
 end
 
 gem "tailwindcss-rails", "~> 2.0"
 gem "font-awesome-sass", "~> 6.2.0"
 gem "pg", "~> 1.4"
-gem "view_component"
+gem "view_component", require: "view_component/engine"
 gem "devise", "~> 4.8"
 gem 'jquery-rails'
 gem 'turbolinks'
