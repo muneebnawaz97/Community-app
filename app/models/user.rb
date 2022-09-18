@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :group_memberships
   has_many :groups, through: :group_memberships
+  has_many :groups
   has_many :comments
 
   validates :name, presence: true, allow_blank: false

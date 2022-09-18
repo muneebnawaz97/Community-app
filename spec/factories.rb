@@ -11,6 +11,7 @@ end
 FactoryBot.define do
   factory(:group) do
     title { Faker::Books::Dune.planet }
+    user
 
     after :create do |group, options|
       group.admins << options.admins
