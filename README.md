@@ -1,24 +1,13 @@
-# README
+Ruby version : 3.1.2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails version : 7.0.3
 
-Things you may want to cover:
+Dependencies
+This project uses dotenv gem so please place all your environment variables in the .env in the root directory of the project
 
-* Ruby version
 
-* System dependencies
+cloudinary settings
 
-* Configuration
+cloud_name: 'Your cloud name' api_key: 'Your API key' api_secret: 'Your API secret key' 
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To run this project. Clone the repository. Run bundle to install all the dependencies.Start the rails server and you are good to go
