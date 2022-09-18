@@ -1,9 +1,9 @@
 <div class="flex flex-col margin-bottom: 50px">
-  <div class="flex" style="max-height: 350px;">
-    <div class="flex flex-col basis-3/5 ml-24" style="margin-left: 100px;">
+  <div class="flex" style="max-height: 450px;">
+    <div class="flex flex-col basis-3/5 ml-24" style="margin-left: 100px; overflow: auto">
       <div class="flex">
         <div class="ml-6 ">
-          <h1 id="title" class="font-bold text-3xl"><%= @group.title %></h1>
+          <h1 id="title" class="font-bold text-3xl" style="overflow-wrap: anywhere;"><%= @group.title %></h1>
         </div>
         <% if current_user.admin @group%>
           <div class="mt-2 ml-2">

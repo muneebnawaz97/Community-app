@@ -3,7 +3,7 @@ require 'faker'
 FactoryBot.define do
   factory(:user) do
     email { Faker::Internet.email }
-    password { Faker::Internet.password(min_length: 8) }
+    password { "password" }
     name { Faker::Books::Dune.character }
   end
 end
@@ -12,11 +12,6 @@ FactoryBot.define do
   factory(:group) do
     title { Faker::Books::Dune.planet }
     user
-
-    after :create do |group, options|
-      group.admins << options.admins
-      group.users << options.users
-    end
   end
 end
 
