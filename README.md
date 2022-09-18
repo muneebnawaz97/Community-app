@@ -1,3 +1,5 @@
+This is a simple discussion forum app. Where users can create groups, posts and comments 
+
 Ruby version : 3.1.2
 
 Rails version : 7.0.3
