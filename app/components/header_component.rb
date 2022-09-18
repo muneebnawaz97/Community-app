@@ -10,7 +10,7 @@ class HeaderComponent < ViewComponent::Base
   end
 
   def avatar
-   @current_user&.avatar&.key
+    @current_user&.avatar&.key
   end
 
   def name

@@ -75,6 +75,7 @@ group :test do
   gem "webdrivers"
   gem "dotenv-rails",require: "dotenv/rails-now"
   gem 'launchy', '~> 2.4', '>= 2.4.3'
+  gem 'simplecov', require: false
 end
 
 gem "tailwindcss-rails", "~> 2.0"

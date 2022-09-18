@@ -2,8 +2,8 @@ require "rails_helper"
 
 describe GroupPolicy do
   let(:user) { create :user }
-  let!(:group) do 
-    create :group, 
+  let!(:group) do
+    create :group,
       user_id: user.id
   end
   let!(:membership) { create :group_membership, user: user, group: group, role: :admin }

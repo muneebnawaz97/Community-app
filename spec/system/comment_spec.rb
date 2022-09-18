@@ -3,15 +3,15 @@ require "byebug"
 describe "Comments" do
   let(:user) { create :user }
   let(:member) { create :user }
-  let!(:group) do 
-    create :group, 
+  let!(:group) do
+    create :group,
     user_id: user.id
   end
-  let!(:membership) { create :group_membership, user: user, group: group, role: :admin}
-  let!(:second_membership) { create :group_membership, user: member, group: group, role: :member}
+  let!(:membership) { create :group_membership, user: user, group: group, role: :admin }
+  let!(:second_membership) { create :group_membership, user: member, group: group, role: :member }
   let!(:post) { create :post, user: user, group: group }
   let!(:comment) { create :comment, user: user, post: post }
-  
+
   before do
     sign_in user
     click_on "View group"
@@ -30,7 +30,7 @@ describe "Comments" do
 
     expect(page).to have_content "This is my comment"
   end
-  
+
   scenario "User can delete a comment" do
     expect(page).to have_content comment.content
 

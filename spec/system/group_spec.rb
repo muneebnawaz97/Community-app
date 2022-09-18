@@ -2,20 +2,20 @@ require "rails_helper"
 
 describe "Groups" do
   let(:user) { create :user }
-  let(:member) {create :user}
-  let!(:admin_group) do 
-    create :group, 
+  let(:member) { create :user }
+  let!(:admin_group) do
+    create :group,
       user_id: user.id
   end
-  let!(:member_group) do 
-    create :group 
+  let!(:member_group) do
+    create :group
   end
-  let!(:group) do 
-    create :group 
+  let!(:group) do
+    create :group
   end
   let!(:membership) { create :group_membership, user: user, group: admin_group, role: :admin }
   let!(:user_membership) { create :group_membership, user: user, group: member_group, role: :member }
-  
+
   before do
     sign_in user
   end

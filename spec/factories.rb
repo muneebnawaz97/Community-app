@@ -1,4 +1,4 @@
-require 'faker'
+require "faker"
 
 FactoryBot.define do
   factory(:user) do
@@ -43,5 +43,3 @@ FactoryBot.define do
     end
   end
 end
-
-

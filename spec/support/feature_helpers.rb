@@ -1,9 +1,8 @@
 module FeatureHelpers
-  
   def sign_in user=nil, password="password"
     visit new_user_session_path
     fill_sign_in user, password
-    
+
     expect(page).to have_content "Groups"
   end
 
