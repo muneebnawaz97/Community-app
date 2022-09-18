@@ -4,11 +4,11 @@ class PostPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin? || post_owner
+    admin? || post_owner?
   end
 
   def update?
-    admin? || post_owner
+    admin? || post_owner?
   end
 
   def show?

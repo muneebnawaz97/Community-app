@@ -1,6 +1,6 @@
 class GroupMembershipPolicy < ApplicationPolicy
   def destroy?
-    user
+    admin?
   end
 
   def create?
@@ -10,6 +10,6 @@ class GroupMembershipPolicy < ApplicationPolicy
   private
 
   def admin?
-    user.admin record
+    user.admin record.group
   end
 end
