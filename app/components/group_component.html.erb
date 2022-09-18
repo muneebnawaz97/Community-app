@@ -19,7 +19,7 @@
             </div>
             <%if @current_user.member? @group%>
                 <div class="flex flex-col">
-                    <h1><%=link_to "View group", group_path(@group.id), class: "text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
+                    <h1><%=link_to "View group", group_path(@group.id), class: "view-group text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
                 </div>
             <%end%>
         </div>

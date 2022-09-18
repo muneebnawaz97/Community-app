@@ -20,7 +20,7 @@ describe "Groups" do
   before do
     sign_in user
   end
-  
+
   scenario "Users logs in and navigates to the index page" do
     expect(page).to have_content group.title
     expect(page).to have_content "+ Create a new group"
@@ -55,10 +55,13 @@ describe "Groups" do
   scenario "User sees groups they are a member of" do
     click_on "Where I am a member"
     expect(page).to have_content member_group.title
+    expect(page).to have_content admin_group.title
+    expect(page).to_not have_content group.title
   end
 
   scenario "User sees groups they are admin of" do
     click_on "Created by me"
     expect(page).to have_content admin_group.title
+    expect(page).to_not have_content member_group.title
   end
 end
