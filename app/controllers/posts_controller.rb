@@ -3,7 +3,6 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
 
-    authorize @post
 
     if @post.save
       redirect_to group_path(params[:group_id])
