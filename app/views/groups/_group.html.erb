@@ -17,6 +17,11 @@
             <div class="flex flex-col">
                 <h1 class="text-md font-thin"> <%= group.total_posts %> Posts</h1>
             </div>
+            <%if @current_user.member? group%>
+                <div class="flex flex-col">
+                    <h1><%=link_to "View group", group_path(group.id), class: "view-group text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
+                </div>
+            <%end%>
         </div>
     </div>
     <div class='flex items-center justify-center mr-10 basis-2/5'>
