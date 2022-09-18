@@ -14,8 +14,8 @@ describe "Groups" do
   let!(:group) do 
     create :group 
   end
-  let!(:membership) { create :group_membership, user: user, group: admin_group, role: :admin}
-  let!(:membership) { create :group_membership, user: user, group: member_group, role: :member}
+  let!(:membership) { create :group_membership, user: user, group: admin_group, role: :admin }
+  let!(:user_membership) { create :group_membership, user: user, group: member_group, role: :member }
   
   before do
     sign_in user

@@ -16,11 +16,6 @@ describe "Users log in" do
   let!(:membership) { create :group_membership, user: user, group: admin_group, role: :admin}
   let!(:membership) { create :group_membership, user: user, group: member_group, role: :member}
   
-  before do
-    sign_in user
-  end
-
-
   scenario "Users enters the wrong password" do
     visit new_user_session_path
     fill_in "Email", with: user.email

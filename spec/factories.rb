@@ -34,7 +34,6 @@ end
 
 FactoryBot.define do
   factory(:comment) do
-    title { Faker::Books::Dune.quote }
     content { Faker::Lorem.sentences(number: 3) }
     user
     post

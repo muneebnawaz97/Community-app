@@ -28,7 +28,7 @@
                 <%end%>
                 <h1 class="mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" style="margin-left:10px; margin-right: 10px;"> <%= last_activity %> ago</h1>
                 <% if can_edit%>
-                  <h1 class="mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" style="margin-left:10px; margin-right: 10px;" data-action="click->edit-comment#edit">Edit </h1>
+                  <h1 class="edit-comment mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" style="margin-left:10px; margin-right: 10px;" data-action="click->edit-comment#edit">Edit </h1>
                   <h1 style="margin-left:10px; margin-right: 10px;"><%=link_to "Delete", group_post_comment_path(id: comment, group_id: group, post_id: post), method: :delete, class: "mx-1.5 text-gray-600 block hover:text-green-300 focus:outline-none" %></h1>
                 <%end%>
               </div>
@@ -38,7 +38,7 @@
       <div id="form-<%= comment.id%>" style="display:none">
         <%= render(CommentFormComponent.new(group: group, post: post, comment: comment))%>
       </div>
-      <div id="reply-<%= comment.id%>" style="display:none">
+      <div id="reply-<%= comment.id%>" class="edit-comment-form" style="display:none">
         <%= render(ReplyCommentFormComponent.new(post: post, comment: comment))%>
       </div>
     <%unless comment.parent_id%>
