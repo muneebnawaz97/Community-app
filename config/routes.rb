@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :group_memberships, only: [:create, :destroy]
   end
 
-  # match '*unmatched', to: 'application#route_not_found', via: :all
+  match '*unmatched', to: 'application#route_not_found', via: :all
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
