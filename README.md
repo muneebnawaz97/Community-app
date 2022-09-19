@@ -14,4 +14,5 @@ cloudinary settings
 
 cloud_name: 'Your cloud name' api_key: 'Your API key' api_secret: 'Your API secret key' 
 
-To run this project. Clone the repository. Run bundle to install all the dependencies.Start the rails server and you are good to go
+To run this project. Clone the repository.Run bundle to install all the dependencies, setup your database with db:setup.
+Start the rails server and you are good to go
