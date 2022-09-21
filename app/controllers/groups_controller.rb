@@ -14,8 +14,6 @@ class GroupsController < ApplicationController
     @group = Group.new
   end
 
-  def edit; end
-
   def create
     @group = Group.new(group_params)
     @group.user_id = current_user.id
@@ -25,8 +23,8 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
         create_group_membership
-        format.turbo_stream { render turbo_stream: turbo_stream.prepend("groups", partial: "groups/group", locals: {group: @group}) }
-        format.html { redirect_to groups_path(all: true), notice: "Group was successfully created." }
+        format.turbo_stream { render turbo_stream: turbo_stream.prepend('groups', partial: 'groups/group', locals: {group: @group}) }
+        format.html { redirect_to groups_path(all: true), notice: 'Group was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -38,8 +36,8 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.update(group_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@group, partial: "groups/group", locals: {group: @group}) }
-        format.html { redirect_to groups_path, notice: "Group was successfully updated." }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@group, partial: 'groups/group', locals: {group: @group}) }
+        format.html { redirect_to groups_path, notice: 'Group was successfully updated.' }
       end
     end
   end
@@ -54,7 +52,7 @@ class GroupsController < ApplicationController
     @groups = current_user.groups
 
     respond_to do |format|
-      format.html { render template: "groups/index" }
+      format.html { render template: 'groups/index' }
     end
   end
 
@@ -62,7 +60,7 @@ class GroupsController < ApplicationController
     @groups = current_user.groups.where(user_id: current_user.id)
 
     respond_to do |format|
-      format.html { render template: "groups/index" }
+      format.html { render template: 'groups/index' }
     end
   end
 

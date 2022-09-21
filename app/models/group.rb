@@ -1,12 +1,14 @@
 class Group < ApplicationRecord
+  
+  belongs_to :user
+  
   has_many :posts, dependent: :destroy
   has_many :group_memberships, dependent: :destroy
   has_many :users, through: :group_memberships
   has_many :admins,
-    -> { where("group_memberships.role": :admin) },
+    -> { where('group_memberships.role': :admin) },
     through: :group_memberships,
     source: :user
-  belongs_to :user
 
   validates :title, presence: true, allow_blank: false
   validates :user_id, presence: true

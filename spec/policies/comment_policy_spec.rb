@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe CommentPolicy do
   let(:user) { create :user }
@@ -16,11 +16,11 @@ describe CommentPolicy do
   let!(:comment) { create :comment, user: member, post: post }
 
   permissions :update? do
-    it "user can update their own comment" do
+    it 'user can update their own comment' do
       expect(described_class).to permit(member, comment)
     end
 
-    it "Admin can update coment" do
+    it 'Admin can update coment' do
       expect(described_class).to permit(user, comment)
     end
 
@@ -30,10 +30,10 @@ describe CommentPolicy do
   end
 
   permissions :destroy? do
-    it "Admin can destroy comments" do
+    it 'Admin can destroy comments' do
       expect(described_class).to permit(user, comment)
     end
-    it "user can destroy their own comments" do
+    it 'user can destroy their own comments' do
       expect(described_class).to permit(member, comment)
     end
 

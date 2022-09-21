@@ -7,9 +7,9 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: "Comment was successfully created." }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), notice: 'Comment was successfully created.' }
       else
-        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), alert: "Failed to create comment." }
+        format.html { redirect_to group_post_path(group_id: params[:group_id], id: params[:post_id]), alert: 'Failed to create comment.' }
       end
     end
   end
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to group_post_path(id: params[:post_id], group_id: params[:group_id]), notice: "Comment was successfully destroyed." }
+      format.html { redirect_to group_post_path(id: params[:post_id], group_id: params[:group_id]), notice: 'Comment was successfully destroyed.' }
     end
   end
 

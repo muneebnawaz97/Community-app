@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe GroupPolicy do
   let(:user) { create :user }
@@ -9,7 +9,7 @@ describe GroupPolicy do
   let!(:membership) { create :group_membership, user: user, group: group, role: :admin }
 
   permissions :create? do
-    it "User can join a group" do
+    it 'User can join a group' do
       expect(described_class).to permit(user, group)
     end
   end

@@ -1,6 +1,6 @@
-require "rails_helper"
-require "byebug"
-describe "Comments" do
+require 'rails_helper'
+require 'byebug'
+describe 'Comments' do
   let(:user) { create :user }
   let(:member) { create :user }
   let!(:group) do
@@ -14,27 +14,27 @@ describe "Comments" do
 
   before do
     sign_in user
-    click_on "View group"
-    click_on "View Post ->"
+    click_on 'View group'
+    click_on 'View Post ->'
   end
 
-  scenario "User can see the post" do
+  scenario 'User can see the post' do
     expect(page).to have_content post.title
     expect(page).to have_content post.content
-    expect(page).to have_content "Comments"
+    expect(page).to have_content 'Comments'
   end
 
-  scenario "User can create a comment" do
-    fill_in "Write your comment...", with: "This is my comment"
-    click_on "Create Comment"
+  scenario 'User can create a comment' do
+    fill_in 'Write your comment...', with: 'This is my comment'
+    click_on 'Create Comment'
 
-    expect(page).to have_content "This is my comment"
+    expect(page).to have_content 'This is my comment'
   end
 
-  scenario "User can delete a comment" do
+  scenario 'User can delete a comment' do
     expect(page).to have_content comment.content
 
-    click_on "Delete"
+    click_on 'Delete'
 
     expect(page).to_not have_content comment.content
   end

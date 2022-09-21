@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to group_path(params[:group_id])
     else
-      format.html { redirect_to group_path(group_id: params[:group_id]), alert: "Failed to update post." }
+      format.html { redirect_to group_path(group_id: params[:group_id]), alert: 'Failed to update post.' }
     end
   end
 

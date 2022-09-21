@@ -61,7 +61,7 @@ Style/Lambda:
 Style/MethodDefParentheses:
   EnforcedStyle: require_no_parentheses_except_multiline
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
 Style/SymbolArray:
   EnforcedStyle: brackets
 Style/OptionalBooleanParameter:
