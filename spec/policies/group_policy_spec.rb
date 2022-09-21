@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe GroupPolicy do
   let(:user) { create :user }
@@ -12,31 +12,31 @@ describe GroupPolicy do
   let!(:user_membership) { create :group_membership, user: member, group: group, role: :member }
 
   permissions :create? do
-    it "User can create group" do
+    it 'User can create group' do
       expect(described_class).to permit(user)
     end
   end
 
   permissions :update? do
-    it "Admin can update group" do
+    it 'Admin can update group' do
       expect(described_class).to permit(user, group)
     end
 
-    it "User cannot update group" do
+    it 'User cannot update group' do
       expect(described_class).to_not permit(member, group)
     end
   end
 
   permissions :show? do
-    it "Admin can visit group" do
+    it 'Admin can visit group' do
       expect(described_class).to permit(user, group)
     end
 
-    it "member can visit group" do
+    it 'member can visit group' do
       expect(described_class).to permit(member, group)
     end
 
-    it "non member visit group" do
+    it 'non member visit group' do
       expect(described_class).to_not permit(non_member, group)
     end
   end

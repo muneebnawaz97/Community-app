@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   root to: "groups#index"
   
-  get '/groups/member', to: 'groups#member', as: 'groups_member'
-  get '/groups/created', to: 'groups#created_by_me', as: 'groups_created'
-
+  resources :group_types, only: [:index, :show]
   resources :groups do
     resources :posts do
       resources :comments do

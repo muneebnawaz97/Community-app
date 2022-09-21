@@ -1,10 +1,10 @@
 class Post < ApplicationRecord
-  has_many :comments, dependent: :destroy
+  
   belongs_to :user
   belongs_to :group
+  
+  has_many :comments, dependent: :destroy
 
-  validates :title, presence: true, allow_blank: false
-  validates :content, presence: true, allow_blank: false
-  validates :user_id, presence: true
-  validates :group_id, presence: true
+  validates :title, :content, presence: true, allow_blank: false
+  validates :user_id, :group_id, presence: true
 end

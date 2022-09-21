@@ -9,10 +9,10 @@
           <%=link_to groups_path(all: true), class: params[:all] ? "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" : "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none font-medium" do %>
               All Groups
           <% end %>
-          <%= link_to groups_created_path(created: true), class: params[:created] ? "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" : "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" do %>
+          <%= link_to group_type_path(id: 0, created: true), class: params[:created] ? "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" : "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" do %>
               Created by me
           <% end %>
-          <%= link_to groups_member_path(member: true), class:  params[:member] ? "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" : "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" do%>
+          <%= link_to group_types_path(member: true), class:  params[:member] ? "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none text-blue-500 border-b-2 font-medium border-blue-500" : "text-gray-600 py-4 px-6 block hover:text-blue-500 focus:outline-none" do%>
               Where I am a member
           <% end %>
       </nav>

@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 describe PostPolicy do
   let(:user) { create :user }
@@ -15,11 +15,11 @@ describe PostPolicy do
   let!(:post) { create :post, user: member, group: group }
 
   permissions :update? do
-    it "user can update their own post" do
+    it 'user can update their own post' do
       expect(described_class).to permit(member, post)
     end
 
-    it "Admin can update posts" do
+    it 'Admin can update posts' do
       expect(described_class).to permit(user, post)
     end
 
@@ -29,10 +29,10 @@ describe PostPolicy do
   end
 
   permissions :destroy? do
-    it "Admin can destroy posts" do
+    it 'Admin can destroy posts' do
       expect(described_class).to permit(user, post)
     end
-    it "user can destroy their own posts" do
+    it 'user can destroy their own posts' do
       expect(described_class).to permit(member, post)
     end
 
@@ -42,15 +42,15 @@ describe PostPolicy do
   end
 
   permissions :show? do
-    it "Admin can view post" do
+    it 'Admin can view post' do
       expect(described_class).to permit(user, post)
     end
 
-    it "user can view post" do
+    it 'user can view post' do
       expect(described_class).to permit(user, post)
     end
 
-    it "non member can not view post" do
+    it 'non member can not view post' do
       expect(described_class).to_not permit(non_member, post)
     end
   end

@@ -9,8 +9,7 @@ class User < ApplicationRecord
   has_many :groups, through: :group_memberships
   has_many :comments
 
-  validates :name, presence: true, allow_blank: false
-  validates :email, presence: true, allow_blank: false
+  validates :name, :email, presence: true, allow_blank: false
 
   def post_owner post
     post.user.id == id

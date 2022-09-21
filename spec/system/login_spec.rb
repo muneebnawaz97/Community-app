@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-describe "Users log in" do
+describe 'Users log in' do
   let(:user) { create :user }
   let(:member) { create :user }
   let!(:admin_group) do
@@ -16,22 +16,22 @@ describe "Users log in" do
   let!(:membership) { create :group_membership, user: user, group: admin_group, role: :admin }
   let!(:membership) { create :group_membership, user: user, group: member_group, role: :member }
 
-  scenario "Users enters the wrong password" do
+  scenario 'Users enters the wrong password' do
     visit new_user_session_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "password123"
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'password123'
 
-    click_button "Log in"
+    click_button 'Log in'
 
-    expect(page).to have_content "Invalid Email or password."
+    expect(page).to have_content 'Invalid Email or password.'
   end
 
-  scenario "Users go to the login page" do
+  scenario 'Users go to the login page' do
     visit new_user_session_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: user.password
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
 
-    click_button "Log in"
-    expect(page).to have_content "Groups"
+    click_button 'Log in'
+    expect(page).to have_content 'Groups'
   end
 end
