@@ -1,9 +1,7 @@
 module Rescuable
   extend ActiveSupport::Concern
 
-
   included do
-    
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     rescue_from NameError, with: :route_not_found
@@ -13,7 +11,6 @@ module Rescuable
     def route_not_found
       render file: Rails.public_path.join('404.html'), status: :not_found, layout: false
     end
-  
 
     def user_not_authorized
       flash[:alert] = 'Unauthorized Action'

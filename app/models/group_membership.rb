@@ -1,5 +1,4 @@
 class GroupMembership < ApplicationRecord
-  
   enum role: [:admin, :member]
 
   belongs_to :group
